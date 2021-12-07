@@ -1,0 +1,27 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:formvh="http://typo3.org/ns/TYPO3/CMS/Form/ViewHelpers"
+      xmlns:t="http://typo3.org/ns/R3H6/FormTypolinkCheckbox/ViewHelpers"
+      xmlns:be="http://typo3.org/ns/TYPO3/CMS/Backend/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<div class="form-editor typolink-checkbox">
+    <div class="t3-form-control-group form-group">
+        <label data-random-id data-random-id-attribute="for" data-random-id-number="1"><span data-template-property="label"></span></label>
+        <div class="input-group" data-identifier="inspectorEditorControlsGroup">
+            <div class="t3-form-controls" data-identifier="inspectorEditorControlsWrapper">
+                <input class="form-control" data-random-id data-random-id-attribute="id" data-random-id-number="1" type="text" value="" data-template-property="propertyPath">
+            </div>
+            <span class="input-group-btn" role="group">
+                <span class="btn-group">
+                    <a type="button" href="{be:moduleLink(route:'tx_formtypolinkcheckbox_linkbrowser')}" target="_blank" class="btn btn-default">
+                        <core:icon identifier="actions-wizard-link" />
+                    </a>
+                </span>
+            </span>
+        </div>
+        <span class="inspector-editor-hint" data-template-property="fieldExplanationText"></span>
+        <span data-template-property="validationErrors"></span>
+    </div>
+</div>
+
+</html>

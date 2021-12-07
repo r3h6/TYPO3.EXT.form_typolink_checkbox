@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="EXT:form_typolink_checkbox/Resources/Private/Language/locallang_be.xlf" date="2021-11-17T22:02:41Z" product-name="form_typolink_checkbox">
+		<header/>
+		<body>
+			<trans-unit id="formEditor.elements.TypolinkCheckbox.label">
+				<source>Typolink Checkbox</source>
+			</trans-unit>
+			<trans-unit id="formEditor.elements.TypolinkCheckbox.editor.link.label">
+				<source>Link</source>
+			</trans-unit>
+			<trans-unit id="formEditor.elements.TypolinkCheckbox.editor.linkText.label">
+				<source>Linktext</source>
+			</trans-unit>
+			<trans-unit id="formEditor.elements.FormElement.editor.label.fieldExplanationText">
+				<source>Wrap the text to link with double square brackets.</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

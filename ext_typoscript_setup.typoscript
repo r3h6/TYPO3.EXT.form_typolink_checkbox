@@ -1,0 +1,14 @@
+plugin.tx_form {
+  settings {
+    yamlConfigurations {
+      1638555704226 = EXT:form_typolink_checkbox/Configuration/Yaml/FormSetup.yaml
+    }
+  }
+}
+module.tx_form {
+  settings {
+    yamlConfigurations {
+      1638555704226 = EXT:form_typolink_checkbox/Configuration/Yaml/FormSetup.yaml
+    }
+  }
+}

@@ -1,0 +1,25 @@
+imports:
+  - { resource: "EXT:form_typolink_checkbox/Configuration/Yaml/FormElements/TypolinkCheckbox.yaml" }
+
+TYPO3:
+  CMS:
+    Form:
+      prototypes:
+        standard:
+          formElementsDefinition:
+            Form:
+              renderingOptions:
+                partialRootPaths:
+                  1638555704226: 'EXT:form_typolink_checkbox/Resources/Private/Frontend/Partials/'
+          formEditor:
+            translationFiles:
+              1638555704226: 'EXT:form_typolink_checkbox/Resources/Private/Language/locallang_be.xlf'
+            formEditorPartials:
+              Inspector-TypolinkEditor: Inspector/TypolinkEditor
+              #public/typo3/sysext/form/Resources/Private/Backend/Partials/FormEditor/Inspector/Typo3WinBrowserEditor.html
+            formEditorFluidConfiguration:
+              partialRootPaths:
+                1638555704226: 'EXT:form_typolink_checkbox/Resources/Private/Backend/Partials/FormEditor/'
+              layoutRootPaths:
+                1638555704226: 'EXT:form_typolink_checkbox/Resources/Private/Backend/Layouts/FormEditor/'
+

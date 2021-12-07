@@ -1,0 +1,27 @@
+TYPO3:
+  CMS:
+    Form:
+      prototypes:
+        standard:
+          formElementsDefinition:
+            TypolinkCheckbox:
+              __inheritances:
+                10: 'TYPO3.CMS.Form.prototypes.standard.formElementsDefinition.Checkbox'
+              implementationClassName: 'R3H6\FormTypolinkCheckbox\Domain\Model\FormElements\TypolinkCheckbox'
+              formEditor:
+                editors:
+                  200:
+                    fieldExplanationText: 'formEditor.elements.FormElement.editor.label.fieldExplanationText'
+                  400:
+                    identifier: 'link'
+                    templateName: 'Inspector-TypolinkEditor'
+                    label: 'formEditor.elements.TypolinkCheckbox.editor.link.label'
+                    propertyPath: 'properties.link'
+                label: 'formEditor.elements.TypolinkCheckbox.label'
+          formEditor:
+            formEditorPartials:
+              FormElement-TypolinkCheckbox: 'Stage/SimpleTemplate'
+            dynamicRequireJsModules:
+              additionalViewModelModules:
+                - 'TYPO3/CMS/FormTypolinkCheckbox/Backend/FormEditor/TypolinkCheckboxViewModel'
+
