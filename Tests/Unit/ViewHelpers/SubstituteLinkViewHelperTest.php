@@ -3,7 +3,6 @@
 namespace R3H6\FormTypolinkCheckbox\Tests\ViewHelpers;
 
 use Prophecy\Argument;
-use Prophecy\PhpUnit\ProphecyTrait;
 use R3H6\FormTypolinkCheckbox\Domain\Model\FormElements\TypolinkCheckbox;
 use R3H6\FormTypolinkCheckbox\ViewHelpers\SubstituteLinkViewHelper;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -13,7 +12,10 @@ use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 
 class SubstituteLinkViewHelperTest extends UnitTestCase
 {
-    use ProphecyTrait;
+    public function addWarning(string $warning): void
+    {
+        //$this->warnings[] = $warning;
+    }
 
     /**
      * @test

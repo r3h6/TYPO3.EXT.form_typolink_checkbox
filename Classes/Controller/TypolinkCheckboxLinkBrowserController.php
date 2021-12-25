@@ -2,37 +2,18 @@
 
 namespace R3H6\FormTypolinkCheckbox\Controller;
 
+use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Frontend\Service\TypoLinkCodecService;
 use TYPO3\CMS\Recordlist\Controller\AbstractLinkBrowserController;
 
 class TypolinkCheckboxLinkBrowserController extends AbstractLinkBrowserController
 {
-
-    protected function initCurrentUrl()
-    {
-        $currentLink = isset($this->parameters['currentValue']) ? trim($this->parameters['currentValue']) : '';
-        /** @var array<string, string> $currentLinkParts */
-        $currentLinkParts = GeneralUtility::makeInstance(TypoLinkCodecService::class)->decode($currentLink);
-        $currentLinkParts['params'] = $currentLinkParts['additionalParams'];
-        unset($currentLinkParts['additionalParams']);
-
-        if (!empty($currentLinkParts['url'])) {
-            $data = $this->linkService->resolve($currentLinkParts['url']);
-            $currentLinkParts['type'] = $data['type'];
-            unset($data['type']);
-            $currentLinkParts['url'] = $data;
-        }
-
-        $this->currentLinkParts = $currentLinkParts;
-
-        parent::initCurrentUrl();
-    }
-
+    // @phpstan-ignore-next-line
     protected function initDocumentTemplate()
     {
         parent::initDocumentTemplate();
-        $this->pageRenderer->loadRequireJsModule(
+        $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
+        $pageRenderer->loadRequireJsModule(
             'TYPO3/CMS/FormTypolinkCheckbox/LinkBrowserAdapter',
             'function(LinkBrowserAdapter) {
                 LinkBrowserAdapter.target = ' . json_encode($this->parameters['target'], JSON_HEX_APOS | JSON_HEX_QUOT) . ';
