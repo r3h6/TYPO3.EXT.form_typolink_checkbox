@@ -3,7 +3,7 @@
 $EM_CONF[$_EXTKEY] = [
     'title' => 'Form TypoLink Checkbox',
     'description' => 'Typolink checkbox for TYPO3 form framework.',
-    'category' => 'plugin',
+    'category' => 'fe',
     'author' => 'R3 H6',
     'author_email' => 'r3h6@outlook.com',
     'state' => 'beta',
