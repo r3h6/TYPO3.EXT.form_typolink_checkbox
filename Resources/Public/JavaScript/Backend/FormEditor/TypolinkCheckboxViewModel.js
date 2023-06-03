@@ -1,13 +1,10 @@
 define([
     'jquery',
     'TYPO3/CMS/Form/Backend/FormEditor/Helper',
-    'TYPO3/CMS/Backend/Modal',
-    'TYPO3/CMS/FormTypolinkCheckbox/LinkBrowserAdapter',
-    'TYPO3/CMS/Backend/Icons',
-    'TYPO3/CMS/Form/Backend/Contrib/jquery.mjs.nestedSortable'
-  ], function($, Helper, Modal, LinkBrowserAdapter) {
+    'TYPO3/CMS/Backend/Modal'
+  ], function($, Helper, Modal) {
     'use strict';
-    LinkBrowserAdapter.foo = 'bar';
+
     return (function($, Helper, Modal) {
 
       /**

@@ -3,6 +3,7 @@
 namespace R3H6\FormTypolinkCheckbox\Tests\ViewHelpers;
 
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 use R3H6\FormTypolinkCheckbox\Domain\Model\FormElements\TypolinkCheckbox;
 use R3H6\FormTypolinkCheckbox\ViewHelpers\SubstituteLinkViewHelper;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -12,15 +13,12 @@ use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 
 class SubstituteLinkViewHelperTest extends UnitTestCase
 {
-    public function addWarning(string $warning): void
-    {
-        //$this->warnings[] = $warning;
-    }
+    use ProphecyTrait;
 
     /**
      * @test
      */
-    public function renderReplacesLabelWithLink()
+    public function renderReplacesLabelWithLink(): void
     {
         $template = '<label title="Hello wörld"><input type="checkbox"><i class="icon"/> Hello wörld</label>';
         $expected = '<label title="Hello w&ouml;rld"><input type="checkbox"><i class="icon"></i> Hello <a href="/test">wörld</a></label>';
@@ -44,7 +42,7 @@ class SubstituteLinkViewHelperTest extends UnitTestCase
     /**
      * @test
      */
-    public function renderAppendsLabelWithLink()
+    public function renderAppendsLabelWithLink(): void
     {
         $template = '<label title="Hello wörld"><input type="checkbox"><i class="icon"/> Hello wörld</label>';
         $expected = '<label title="Hello w&ouml;rld"><input type="checkbox"><i class="icon"></i> Hello wörld <a href="/test">/test</a></label>';

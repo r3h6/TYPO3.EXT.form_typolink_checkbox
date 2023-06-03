@@ -1,14 +1,15 @@
 define([
-  'TYPO3/CMS/Recordlist/LinkBrowser',
+  'TYPO3/CMS/Backend/LinkBrowser',
   'TYPO3/CMS/Backend/Modal'
 ], function(LinkBrowser, Modal) {
 
-
-  var LinkBrowserAdapter = { target: null };
+  const urlParams = new URLSearchParams(window.location.search);
+  const LinkBrowserAdapter = {};
 
   LinkBrowserAdapter.finalizeFunction = function(link)
   {
-    this._getParent().$('#' + this.target).val(link).trigger('change');
+    let target = urlParams.get('P[target]');
+    this._getParent().jQuery('#' + target).val(link).trigger('change');
     Modal.dismiss();
   };
 

@@ -1,8 +1,10 @@
 includes:
 	- .Build/vendor/saschaegerer/phpstan-typo3/extension.neon
+	- .Build/vendor/jangregor/phpstan-prophecy/extension.neon
 
 parameters:
 	level: 7
 	checkMissingIterableValueType: false
 	paths:
 		- Classes/
+		- Tests/

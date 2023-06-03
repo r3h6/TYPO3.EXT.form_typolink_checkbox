@@ -46,6 +46,10 @@ indent_size = 2
 [*.xlf]
 indent_style = tab
 
+# NEON files
+[*.neon]
+indent_style = tab
+
 # .htaccess
 [.htaccess]
 indent_style = tab

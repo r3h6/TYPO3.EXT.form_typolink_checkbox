@@ -14,7 +14,7 @@ class SubstituteLinkViewHelper extends AbstractViewHelper
     protected $escapeChildren = false;
     protected $escapeOutput = false;
 
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
         $this->registerArgument('element', TypolinkCheckbox::class, 'The checkbox label property', true);
         $this->registerArgument('absolute', 'bool', 'Ensure the resulting URL is an absolute URL', false);
@@ -43,7 +43,7 @@ class SubstituteLinkViewHelper extends AbstractViewHelper
 
         /** @var ContentObjectRenderer $contentObject */
         $contentObject = GeneralUtility::makeInstance(ContentObjectRenderer::class);
-        $linkedLabel = preg_replace_callback('/(\[\[([^\]]+)\]\])/si', function ($match) use ($contentObject, $typolink) {
+        $linkedLabel = preg_replace_callback('/(\[\[([^\]]+)\]\])/si', function (array $match) use ($contentObject, $typolink): string {
             return $contentObject->stdWrap($match[2], ['typolink.' => $typolink]);
         }, $element->getOriginalLabel());
 

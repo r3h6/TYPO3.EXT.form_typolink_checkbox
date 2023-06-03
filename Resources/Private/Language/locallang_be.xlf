@@ -13,7 +13,7 @@
 				<source>Linktext</source>
 			</trans-unit>
 			<trans-unit id="formEditor.elements.FormElement.editor.label.fieldExplanationText">
-				<source>Wrap the text to link with double square brackets.</source>
+				<source>Wrap the text to link with double square brackets, e.g. "I agree to [[terms and conditions]]"</source>
 			</trans-unit>
 		</body>
 	</file>
