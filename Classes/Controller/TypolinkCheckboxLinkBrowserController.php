@@ -2,35 +2,34 @@
 
 namespace R3H6\FormTypolinkCheckbox\Controller;
 
+use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Recordlist\Controller\AbstractLinkBrowserController;
 
 class TypolinkCheckboxLinkBrowserController extends AbstractLinkBrowserController
 {
-    // @phpstan-ignore-next-line
-    protected function initDocumentTemplate()
+    protected function initDocumentTemplate(): void
     {
-        parent::initDocumentTemplate();
         $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
         $pageRenderer->loadRequireJsModule(
             'TYPO3/CMS/FormTypolinkCheckbox/LinkBrowserAdapter',
-            'function(LinkBrowserAdapter) {
-                LinkBrowserAdapter.target = ' . json_encode($this->parameters['target'], JSON_HEX_APOS | JSON_HEX_QUOT) . ';
-            }'
         );
     }
 
-    protected function getAllowedLinkAttributes()
+    protected function initVariables(ServerRequestInterface $request): void
     {
-        $this->parameters['params']['blindLinkFields'] = 'target';
-        return parent::getAllowedLinkAttributes();
+        parent::initVariables($request);
+        $this->parameters['params']['allowedOptions'] = 'target';
+        $this->parameters['params']['allowedTypes'] = 'page,url,record,file,email,telephone';
     }
 
-    /**
-     * @return int
-     */
-    protected function getCurrentPageId()
+    public function getConfiguration(): array
+    {
+        return [];
+    }
+
+    protected function getCurrentPageId(): int
     {
         return 0;
     }
