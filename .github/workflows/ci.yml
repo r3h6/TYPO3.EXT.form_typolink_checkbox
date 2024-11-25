@@ -9,30 +9,37 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        env:
-          - { PHP: '8.1', TYPO3_VERSION: ^12.4 }
-          - { PHP: '8.2', TYPO3_VERSION: ^12.4 }
-
-    env: ${{ matrix.env }}
+        include:
+          - { php-version: '8.2', typo3-version: '^13.4' }
+          - { php-version: '8.3', typo3-version: '^13.4' }
+          # Not tested yet, e.g. cs fixer is not compatible yet
+          # - { php-version: '8.4', typo3-version: '^13.4' }
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+
+      - name: Install PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "${{ matrix.php-version }}"
+          tools: composer:v2
 
       - name: Install
-        run: ./Build/Scripts/runTests.sh composer require typo3/cms-core="${TYPO3_VERSION}" --no-suggest
+        run: |-
+          composer require --no-interaction --prefer-dist --no-progress "typo3/cms-core:${{ matrix.typo3-version }}" "typo3/cms-form:${{ matrix.typo3-version }}"
 
       - name: Lint PHP
-        run: ./Build/Scripts/runTests.sh composer ci:php:lint
+        run: composer run ci:php:lint
 
       - name: PHP Coding Standards Fixer
-        run: ./Build/Scripts/runTests.sh composer ci:php:cs
+        run: composer run ci:php:cs
 
       - name: PHPStan
-        run: ./Build/Scripts/runTests.sh composer ci:php:stan
+        run: composer run ci:php:stan
 
       - name: PHP Mess Detector
-        run: ./Build/Scripts/runTests.sh composer ci:php:md
+        run: composer run ci:php:md
 
       - name: Unit tests
-        run: ./Build/Scripts/runTests.sh unit
+        run: composer run ci:test:unit

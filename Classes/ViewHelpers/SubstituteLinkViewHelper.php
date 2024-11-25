@@ -27,11 +27,11 @@ class SubstituteLinkViewHelper extends AbstractViewHelper
         array $arguments,
         \Closure $renderChildrenClosure,
         RenderingContextInterface $renderingContext
-    ) {
+    ): string {
         /** @var TypolinkCheckbox $element */
         $element = $arguments['element'];
         /** @var string $content */
-        $content = mb_convert_encoding($renderChildrenClosure(), 'HTML-ENTITIES', 'UTF-8');
+        $content = htmlentities($renderChildrenClosure());
 
         $typolink = [
             'parameter' => $element->getProperties()['link'],

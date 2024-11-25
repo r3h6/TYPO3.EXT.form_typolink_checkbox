@@ -3,18 +3,16 @@
 namespace R3H6\FormTypolinkCheckbox\Controller;
 
 use Psr\Http\Message\ServerRequestInterface;
+use TYPO3\CMS\Backend\Controller\AbstractLinkBrowserController;
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Recordlist\Controller\AbstractLinkBrowserController;
 
 class TypolinkCheckboxLinkBrowserController extends AbstractLinkBrowserController
 {
     protected function initDocumentTemplate(): void
     {
         $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
-        $pageRenderer->loadRequireJsModule(
-            'TYPO3/CMS/FormTypolinkCheckbox/LinkBrowserAdapter',
-        );
+        $pageRenderer->loadJavaScriptModule('@r3h6/formtypolinkcheckbox/LinkBrowserAdapter');
     }
 
     protected function initVariables(ServerRequestInterface $request): void
