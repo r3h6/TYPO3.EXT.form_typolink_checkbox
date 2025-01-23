@@ -2,7 +2,7 @@ services:
   _defaults:
     autowire: true
     autoconfigure: true
-    public: true
+    public: false
 
   R3H6\FormTypolinkCheckbox\:
     resource: '../Classes/*'

@@ -4,7 +4,9 @@ includes:
 
 parameters:
 	level: 7
-	checkMissingIterableValueType: false
+	ignoreErrors:
+		-
+			identifier: missingType.iterableValue
 	paths:
 		- Classes/
 		- Tests/
