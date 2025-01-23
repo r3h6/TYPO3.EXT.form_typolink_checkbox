@@ -4,7 +4,7 @@
 		<header/>
 		<body>
 			<trans-unit id="formEditor.elements.TypolinkCheckbox.label">
-				<source>Typolink Checkbox</source>
+				<source>Typolink Checkboxxx</source>
 			</trans-unit>
 			<trans-unit id="formEditor.elements.TypolinkCheckbox.editor.link.label">
 				<source>Link</source>

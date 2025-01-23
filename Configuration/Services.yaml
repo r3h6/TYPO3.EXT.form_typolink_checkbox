@@ -2,8 +2,13 @@ services:
   _defaults:
     autowire: true
     autoconfigure: true
-    public: true
+    public: false
 
   R3H6\FormTypolinkCheckbox\:
     resource: '../Classes/*'
     exclude: '../Classes/Domain/Model/*'
+
+  # R3H6\FormTypolinkCheckbox\ViewHelpers\MyTranslateElementPropertyViewHelper:
+  #   decorates: TYPO3\CMS\Form\ViewHelpers\TranslateElementPropertyViewHelper
+  #   decoration_inner_name: TYPO3\CMS\Form\ViewHelpers\TranslateElementPropertyViewHelper.inner
+  #   arguments: ['@TYPO3\CMS\Form\ViewHelpers\TranslateElementPropertyViewHelper.inner']

@@ -1,0 +1,61 @@
+
+renderingOptions:
+  submitButtonLabel: Submit
+  translation:
+    translationFiles:
+      99: fileadmin/form_definitions/l10n/test.xlf
+type: Form
+identifier: test
+label: Test
+prototypeName: standard
+finishers:
+  -
+    options:
+      subject: Test
+      recipients:
+        test@test.test: ''
+      senderAddress: test@test.test
+      senderName: ''
+      addHtmlPart: true
+      attachUploads: true
+      translation:
+        language: Default
+      title: ''
+    identifier: EmailToReceiver
+  -
+    options:
+      message: Thanks
+      contentElementUid: ''
+    identifier: Confirmation
+renderables:
+  -
+    renderingOptions:
+      previousButtonLabel: 'Previous step'
+      nextButtonLabel: 'Next step'
+    type: Page
+    identifier: page-1
+    label: Step
+    renderables:
+      -
+        type: Checkbox
+        identifier: checkbox-1
+        label: 'I read «terms» and «conditions»'
+      -
+        type: TypolinkCheckbox
+        identifier: typolinkcheckbox-1
+        label: 'Grüße <b>Bold</b> 运气!'
+        properties:
+          link: 't3://page?uid=1'
+      -
+        type: TypolinkCheckbox
+        identifier: typolinkcheckbox-2
+        label: 'Grüße «运气»!'
+        properties:
+          link: 't3://page?uid=1'
+  -
+    renderingOptions:
+      previousButtonLabel: 'Previous step'
+      nextButtonLabel: 'Next step'
+    type: SummaryPage
+    identifier: summarypage-1
+    label: 'Summary step'

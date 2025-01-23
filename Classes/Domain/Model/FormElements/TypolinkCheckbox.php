@@ -8,10 +8,11 @@ use TYPO3\CMS\Form\Domain\Model\FormElements\AbstractFormElement;
 
 class TypolinkCheckbox extends AbstractFormElement
 {
-    public function getLabel(): string
-    {
-        return str_replace(['[[', ']]'], '', $this->label);
-    }
+    // public function getLabel(): string
+    // {
+    //     // \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($this); exit;
+    //     return str_replace(['[[', ']]'], '', $this->label);
+    // }
 
     public function getOriginalLabel(): string
     {

@@ -1,7 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace R3H6\FormTypolinkCheckbox\Tests\ViewHelpers;
 
+use PHPUnit\Framework\Attributes\Test;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 use R3H6\FormTypolinkCheckbox\Domain\Model\FormElements\TypolinkCheckbox;
@@ -15,20 +18,18 @@ class SubstituteLinkViewHelperTest extends UnitTestCase
 {
     use ProphecyTrait;
 
-    /**
-     * @test
-     */
+    #[Test]
     public function renderReplacesLabelWithLink(): void
     {
-        $template = '<label title="Hello wörld"><input type="checkbox"><i class="icon"/> Hello wörld</label>';
-        $expected = '<label title="Hello w&ouml;rld"><input type="checkbox"><i class="icon"></i> Hello <a href="/test">wörld</a></label>';
+        $template = '<label title="Grüße 运气!"><input type="checkbox"><i class="icon"/> Grüße 运气!</label>';
+        $expected = '<label title="Gr&uuml;&szlig;e &#36816;&#27668;!"><input type="checkbox"><i class="icon"></i> Grüße <a href="/test">运气</a>!</label>';
 
         $cobj = $this->prophesize(ContentObjectRenderer::class);
-        $cobj->stdWrap('wörld', Argument::type('array'))->willReturn('<a href="/test">wörld</a>');
+        $cobj->stdWrap('运气', Argument::type('array'))->willReturn('<a href="/test">运气</a>');
         GeneralUtility::addInstance(ContentObjectRenderer::class, $cobj->reveal());
 
-        $element = new TypolinkCheckbox('test', 'TypolinkCheckbox');
-        $element->setLabel('Hello [[wörld]]');
+        $element = new TypolinkCheckbox('test-1', 'TypolinkCheckbox');
+        $element->setLabel('Grüße [[运气]]!');
         $element->setProperty('link', 't3://page?uid=1');
 
         $arguments = ['element' => $element];
@@ -39,20 +40,18 @@ class SubstituteLinkViewHelperTest extends UnitTestCase
         self::assertSame($expected, $result);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function renderAppendsLabelWithLink(): void
     {
-        $template = '<label title="Hello wörld"><input type="checkbox"><i class="icon"/> Hello wörld</label>';
-        $expected = '<label title="Hello w&ouml;rld"><input type="checkbox"><i class="icon"></i> Hello wörld <a href="/test">/test</a></label>';
+        $template = '<label title="Grüße 运气!"><input type="checkbox"><i class="icon"/> Grüße 运气!</label>';
+        $expected = '<label title="Gr&uuml;&szlig;e &#36816;&#27668;!"><input type="checkbox"><i class="icon"></i> Grüße 运气! <a href="/test">/test</a></label>';
 
         $cobj = $this->prophesize(ContentObjectRenderer::class);
         $cobj->stdWrap('', Argument::type('array'))->willReturn('<a href="/test">/test</a>');
         GeneralUtility::addInstance(ContentObjectRenderer::class, $cobj->reveal());
 
-        $element = new TypolinkCheckbox('test', 'TypolinkCheckbox');
-        $element->setLabel('Hello wörld');
+        $element = new TypolinkCheckbox('test-1', 'TypolinkCheckbox');
+        $element->setLabel('Grüße 运气!');
         $element->setProperty('link', 't3://page?uid=1');
 
         $arguments = ['element' => $element];

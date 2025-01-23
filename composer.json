@@ -1,28 +1,37 @@
 {
 	"name": "r3h6/form-typolink-checkbox",
-	"type": "typo3-cms-extension",
 	"description": "Typolink checkbox for TYPO3 form framework.",
+	"license": "GPL-2.0-or-later",
+	"type": "typo3-cms-extension",
 	"authors": [
 		{
 			"name": "R3 H6",
 			"role": "Developer"
 		}
 	],
-	"license": "GPL-2.0-or-later",
 	"require": {
-		"typo3/cms-core": "^12.4",
-		"typo3/cms-form": "^12.4",
-		"php": "^8.0"
+		"php": "^8.1",
+		"typo3/cms-core": "^12.4 || ^13.4",
+		"typo3/cms-form": "^12.4 || ^13.4",
+		"typo3/cms-install": "^13.4",
+		"typo3/cms-lowlevel": "^13.4",
+		"typo3/cms-recordlist": "*"
 	},
 	"require-dev": {
-		"typo3/testing-framework": "^7.0",
-		"saschaegerer/phpstan-typo3": "^1.0",
-		"friendsofphp/php-cs-fixer": "^3.3",
+		"ergebnis/composer-normalize": "^2.44",
 		"helmich/typo3-typoscript-lint": "^3.0",
-		"typo3/coding-standards": "^0.5.0",
-		"phpmd/phpmd": "@stable",
 		"jangregor/phpstan-prophecy": "^1.0",
-		"phpspec/prophecy-phpunit": "^2.0"
+		"phpmd/phpmd": "@stable",
+		"phpspec/prophecy-phpunit": "^2.0",
+		"saschaegerer/phpstan-typo3": "^1.0",
+		"typo3/cms-filelist": "^13.4",
+		"typo3/cms-fluid-styled-content": "^13.4",
+		"typo3/cms-rte-ckeditor": "^13.4",
+		"typo3/coding-standards": "^0.5.0",
+		"typo3/testing-framework": "^8.0"
+	},
+	"replace": {
+		"typo3-ter/form-typolink-checkbox": "self.version"
 	},
 	"autoload": {
 		"psr-4": {
@@ -34,15 +43,21 @@
 			"R3H6\\FormTypolinkCheckbox\\Tests\\": "Tests"
 		}
 	},
-	"replace": {
-		"typo3-ter/form-typolink-checkbox": "self.version"
-	},
 	"config": {
-		"vendor-dir": ".Build/vendor",
-		"bin-dir": ".Build/bin",
 		"allow-plugins": {
-			"typo3/cms-composer-installers": true,
-			"typo3/class-alias-loader": true
+			"ergebnis/composer-normalize": true,
+			"typo3/class-alias-loader": true,
+			"typo3/cms-composer-installers": true
+		},
+		"bin-dir": ".Build/bin",
+		"lock": false,
+		"sort-packages": true,
+		"vendor-dir": ".Build/vendor"
+	},
+	"extra": {
+		"typo3/cms": {
+			"extension-key": "form_typolink_checkbox",
+			"web-dir": ".Build/public"
 		}
 	},
 	"scripts": {
@@ -51,16 +66,10 @@
 		"ci:php:md": "phpmd Classes/ text phpmd-ruleset.xml",
 		"ci:php:stan": "phpstan --no-progress",
 		"ci:test:unit": "phpunit -c .Build/vendor/typo3/testing-framework/Resources/Core/Build/UnitTests.xml Tests/Unit/",
+		"fix:composer:normalize": "@composer normalize --no-check-lock",
 		"fix:php:cs": "php-cs-fixer fix --config .php-cs-fixer.php",
-		"post-autoload-dump": [
-			"TYPO3\\TestingFramework\\Composer\\ExtensionTestEnvironment::prepare"
+		"symlink": [
+			"rm -f .Build/public/fileadmin/form_definitions && mkdir -p .Build/public/fileadmin && ln -s ../../../Build/Data/fileadmin/form_definitions/ .Build/public/fileadmin/"
 		]
-	},
-	"extra": {
-		"typo3/cms": {
-			"cms-package-dir": "{$vendor-dir}/typo3/cms",
-			"web-dir": ".Build/public",
-			"extension-key": "form_typolink_checkbox"
-		}
 	}
 }
