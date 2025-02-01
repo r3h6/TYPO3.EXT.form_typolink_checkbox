@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace R3H6\FormTypolinkCheckbox\ViewHelpers;
 
 use DOMNodeList;
@@ -27,11 +29,12 @@ class SubstituteLinkViewHelper extends AbstractViewHelper
         array $arguments,
         \Closure $renderChildrenClosure,
         RenderingContextInterface $renderingContext
-    ) {
+    ): string {
         /** @var TypolinkCheckbox $element */
         $element = $arguments['element'];
-        /** @var string $content */
-        $content = mb_convert_encoding($renderChildrenClosure(), 'HTML-ENTITIES', 'UTF-8');
+        $convmap = [0x80, 0xFFFF, 0, 0xFFFF];
+        $content = mb_encode_numericentity($renderChildrenClosure(), $convmap, 'UTF-8');
+        $label = $element->getLabel();
 
         $typolink = [
             'parameter' => $element->getProperties()['link'],
@@ -51,14 +54,14 @@ class SubstituteLinkViewHelper extends AbstractViewHelper
             $linkedLabel .= ' ' . $contentObject->stdWrap('', ['typolink.' => $typolink]);
         }
 
-        $dom = new \DOMDocument();
+        $dom = new \DOMDocument('1.0', 'UTF-8');
         $dom->loadHTML($content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
         $xpath = new \DOMXPath($dom);
         $nodes = $xpath->query('//text()');
         assert($nodes instanceof DOMNodeList);
         $replacements = [];
         foreach ($nodes as $node) {
-            $replaced = str_replace($element->getLabel(), $linkedLabel, $node->nodeValue);
+            $replaced = str_replace($label, $linkedLabel, $node->nodeValue);
             if ($replaced !== $node->nodeValue) {
                 $node->nodeValue = uniqid(':');
                 $replacements[$node->nodeValue] = $replaced;

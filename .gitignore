@@ -2,3 +2,5 @@
 /.php-cs-fixer.cache
 /composer.lock
 /var/
+/config
+/Build/Data/fileadmin/form_definitions/l10n
